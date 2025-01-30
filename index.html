@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NumPy & Pandas 快速入門教學（完整版）</title>
+    <style>
+       body {
+            font-family: 'Noto Sans TC', sans-serif;
+            line-height: 1.7;
+            margin: 20px;
+            color: #333;
+            background-color: #f8f8f8;
+        }
+        h1, h2, h3 {
+            color: #0056b3;
+            margin-top: 1.8em;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5em;
+        }
+        h1 {
+            font-size: 2.2em;
+            text-align: center;
+            border-bottom: 3px solid #ddd;
+        }
+        h2 {
+            font-size: 1.6em;
+        }
+        h3 {
+            font-size: 1.3em;
+        }
+        p {
+            margin-bottom: 1.2em;
+        }
+        code {
+            background-color: #f0f0f0;
+            padding: 10px; /* 程式碼內距 */
+            border-radius: 4px;
+            display: block;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            font-family: monospace, monospace;
+            line-height: 1.4; /* 調整程式碼行高 */
+            margin-bottom: 1.2em;
+        }
+       .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1.5em;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+       .task {
+            margin: 2em 0;
+            background-color: #f9f9f9;
+            padding: 1.5em;
+            border-left: 4px solid #0056b3;
+            border-radius: 4px;
+        }
+       .task h3 {
+           margin-top: 0;
+           border-bottom: none;
+           padding-bottom: 0;
+        }
+       .solution {
+            display: none;
+            background-color: #e6f7ff;
+            padding: 1.5em;
+            margin-top: 1.2em;
+            border-radius: 4px;
+        }
+       .solution-button {
+           display: inline-block;
+            padding: 0.6em 1.2em;
+            margin: 1.2em 0;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .solution-button:hover {
+            background-color: #45a049;
+        }
+       .note {
+           background-color: #fff8e1;
+            padding: 1em;
+            border-radius: 4px;
+            border-left: 4px solid #ffb300;
+            margin-bottom: 1em;
+        }
+       .note p {
+          margin-bottom: 0;
+        }
+       .code-block { /* 新增程式碼區塊樣式 */
+          margin-bottom: 1.2em; /* 程式碼區塊間距 */
+          padding: 0.5em; /* 程式碼區塊內距 */
+          background-color: #f0f0f0;
+          border-radius: 4px;
+          border: 1px solid #ddd;
+        }
+       .code-block code { /* 新增程式碼區塊中的程式碼樣式 */
+            margin-bottom: 0; /* 程式碼區塊中程式碼不應有額外間距 */
+          padding: 0;  /* 程式碼區塊中程式碼不應有額外內距 */
+       }
+        @media screen and (max-width: 600px) {
+            body {
+                margin: 10px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.2em;
+            }
+            .container {
+                padding: 1em;
+           }
+            .task {
+                padding: 1em;
+            }
+            .solution {
+                padding: 1em;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>NumPy & Pandas 快速入門教學（完整版）</h1>
+
+        <h2>NumPy 基礎</h2>
+        <p>
+            <a href="https://numpy.org/doc/stable/index.html">NumPy</a> 是一個 Python 函式庫，主要用於建立和操作多維陣列（陣列），這在機器學習演算法中是核心資料結構。
+            <a href="https://en.wikipedia.org/wiki/Matrix_(mathematics)">矩陣</a>是一種將數值以行和列形式儲存的數學結構。
+        </p>
+        <p>
+            在 Python 中，我們常將矩陣稱為 *列表 (list)*，而 NumPy 則將其稱為 *陣列 (array)*。 NumPy 的陣列功能比 Python 的列表更強大，更適合數值計算。
+        </p>
+        <div class="note">
+           <p><b>重點提示：</b> NumPy 的陣列是機器學習中處理數據的重要基石，理解其運作方式至關重要。</p>
+        </div>
+
+        <h3>導入 NumPy 模組</h3>
+        <p>要開始使用 NumPy，你需要先導入它：</p>
+         <div class="code-block">
+            <code>import numpy as np</code>
+        </div>
+
+        <h3>建立 NumPy 陣列</h3>
+        <p>你可以使用 <code>np.array()</code> 函式建立 NumPy 陣列。以下範例建立了一維和二維陣列：</p>
+        <div class="code-block">
+            <code>
+                # 建立一維陣列
+                one_dimensional_array = np.array([1.2, 2.4, 3.5, 4.7, 6.1, 7.2, 8.3, 9.5])
+                print(one_dimensional_array)
+
+                # 建立二維陣列
+                two_dimensional_array = np.array([[6, 5], [11, 7], [4, 8]])
+                print(two_dimensional_array)
+            </code>
+        </div>
+
+        <p>你也可以用特殊值初始化陣列，例如建立全零或全一的陣列：</p>
+        <div class="code-block">
+            <code>
+               # 建立全零陣列
+               zeros_array = np.zeros((2,3))
+               print(zeros_array)
+
+               # 建立全一陣列
+               ones_array = np.ones((3,2))
+               print(ones_array)
+            </code>
+        </div>
+        <h3>建立數值序列陣列</h3>
+        <p><code>np.arange()</code> 函式可以建立等差數值序列的陣列，注意不包含終點數值：</p>
+        <div class="code-block">
+            <code>
+              sequence_of_integers = np.arange(5, 12)  # 產生 5, 6, 7, 8, 9, 10, 11
+              print(sequence_of_integers)
+           </code>
+        </div>
+
+        <h3>建立隨機數值陣列</h3>
+        <p>NumPy 提供了產生隨機數值的函式，例如：</p>
+         <div class="code-block">
+             <code>
+                # 產生 50 到 100 之間的隨機整數
+                random_integers = np.random.randint(low=50, high=101, size=(6,))
+                print(random_integers)
+
+                # 產生 0 到 1 之間的隨機浮點數
+                random_floats = np.random.random((6,))
+               print(random_floats)
+            </code>
+         </div>
+
+        <h3>NumPy 陣列的數學運算</h3>
+        <p>
+            NumPy 支援陣列間的數學運算，並且運用
+            <a href="https://developers.google.com/machine-learning/glossary/#broadcasting">**廣播 (broadcasting)**</a> 的概念，使不同形狀的陣列也能進行運算。
+        </p>
+         <div class="code-block">
+            <code>
+              # 陣列加法
+                random_floats_plus_2 = random_floats + 2.0
+               print(random_floats_plus_2)
+
+                # 陣列乘法
+                random_integers_times_3 = random_integers * 3
+                print(random_integers_times_3)
+            </code>
+         </div>
+        <div class="task">
+             <h3>任務 1：建立線性數據集</h3>
+             <p>請建立一個簡單的線性數據集，包含一個特徵和一個標籤：</p>
+               <ol>
+                    <li>建立一個名為 <code>feature</code> 的 NumPy 陣列，包含 6 到 20（包含）的整數序列。</li>
+                     <li>建立一個名為 <code>label</code> 的 NumPy 陣列，包含 15 個數值，其計算方式為：<code>label = (3 * feature) + 4</code>。</li>
+                </ol>
+             <pre><code>feature = ?  # 在這裡填寫程式碼
+print(feature)
+label = ?    # 在這裡填寫程式碼
+print(label)</code></pre>
+             <button class="solution-button" onclick="toggleSolution('task1_solution')">查看任務 1 解答</button>
+            <div class="solution" id="task1_solution">
+                <pre><code>feature = np.arange(6, 21)
+print(feature)
+label = (feature * 3) + 4
+print(label)</code></pre>
+           </div>
+       </div>
+
+        <div class="task">
+           <h3>任務 2：在數據集中加入雜訊</h3>
+              <p>為了讓數據集更真實，請在 <code>label</code> 陣列中加入隨機雜訊，具體作法如下：</p>
+               <p>建立一個名為 <code>noise</code> 的陣列，與 <code>label</code> 陣列的形狀相同。此陣列中的數值為 -2 到 +2 之間的隨機浮點數，將 <code>label</code> 陣列中的每個數值加上對應的 <code>noise</code> 數值。</p>
+               <p>提示：請使用  <code>np.random.random()</code> 產生 0~1 的隨機數值，然後縮放到 -2 ~ 2 的範圍。</p>
+                <pre><code>noise = ?    # 在這裡填寫程式碼
+print(noise)
+label = ?    # 在這裡填寫程式碼
+print(label)</code></pre>
+
+            <button class="solution-button" onclick="toggleSolution('task2_solution')">查看任務 2 解答</button>
+             <div class="solution" id="task2_solution">
+                <pre><code>noise = (np.random.random(15) * 4) - 2
+print(noise)
+label = label + noise
+print(label)
+</code></pre>
+            </div>
+        </div>
+
+        <h2>Pandas DataFrame 基礎</h2>
+        <p>
+             <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">Pandas DataFrame</a> 是一種以表格形式儲存資料的資料結構，類似於試算表。 DataFrame 提供強大的資料操作和分析功能。
+        </p>
+       <div class="note">
+           <p><b>重點提示：</b> DataFrame 是 pandas 函式庫的核心，能有效處理和分析結構化數據。</p>
+       </div>
+
+       <h3>導入 pandas 模組</h3>
+       <p>要使用 DataFrame，你需要先導入 pandas 函式庫：</p>
+       <div class="code-block">
+          <code>import pandas as pd</code>
+       </div>
+
+        <h3>建立 DataFrame</h3>
+        <p>你可以使用 <code>pd.DataFrame()</code> 函式建立 DataFrame。以下範例示範了如何建立一個簡單的 DataFrame：</p>
+        <div class="code-block">
+             <code>
+                # 建立 NumPy 陣列
+                my_data = np.array([[0, 3], [10, 7], [20, 9], [30, 14], [40, 15]])
+
+                # 建立欄位名稱列表
+                my_column_names = ['temperature', 'activity']
+
+                # 建立 DataFrame
+                my_dataframe = pd.DataFrame(data=my_data, columns=my_column_names)
+                print(my_dataframe)
+            </code>
+       </div>
+
+        <h3>新增欄位</h3>
+        <p>你可以透過指定新的欄位名稱來新增欄位：</p>
+         <div class="code-block">
+            <code>
+                # 新增名為 'adjusted' 的欄位
+                my_dataframe["adjusted"] = my_dataframe["activity"] + 2
+                print(my_dataframe)
+             </code>
+         </div>
+
+        <h3>選取 DataFrame 的子集</h3>
+       <p>你可以選取 DataFrame 的特定部分，像是：</p>
+        <div class="code-block">
+           <code>
+                # 選取前三行
+                print("前三行：")
+                print(my_dataframe.head(3), '\n')
+
+                # 選取索引為 2 的行
+                print("索引為 2 的行：")
+                print(my_dataframe.iloc[[2]], '\n')
+
+                # 選取索引為 1 到 3 的行
+                print("索引為 1 到 3 的行：")
+                print(my_dataframe[1:4], '\n')
+
+                # 選取 'temperature' 欄位
+                print("temperature 欄位：")
+                print(my_dataframe['temperature'])
+           </code>
+        </div>
+
+
+      <div class="task">
+          <h3>任務 3：建立 DataFrame</h3>
+           <p>請建立一個 3x4 的 DataFrame，欄位名稱為 <code>'Eleanor', 'Chidi', 'Tahani', 'Jason'</code>，並執行下列操作：</p>
+               <ol>
+                   <li>使用 0 到 100 之間的隨機整數填充 DataFrame。</li>
+                    <li>印出整個 DataFrame。</li>
+                    <li>印出 <code>'Eleanor'</code> 欄位中索引為 1 的數值。</li>
+                     <li>新增一個欄位名為 <code>'Janet'</code>，其數值為 <code>'Tahani'</code> 和 <code>'Jason'</code> 欄位的數值相加。</li>
+                </ol>
+           <pre><code># 在這裡填寫你的程式碼</code></pre>
+            <button class="solution-button" onclick="toggleSolution('task3_solution')">查看任務 3 解答</button>
+           <div class="solution" id="task3_solution">
+            <pre><code>
+               # 建立欄位名稱列表
+                my_column_names = ['Eleanor', 'Chidi', 'Tahani', 'Jason']
+
+               # 建立 3x4 NumPy 陣列
+                my_data = np.random.randint(low=0, high=101, size=(3, 4))
+
+               # 建立 DataFrame
+               df = pd.DataFrame(data=my_data, columns=my_column_names)
+                print(df)
+
+               # 印出 Eleanor 欄位索引為 1 的數值
+               print("\nEleanor 欄位第二行的值: %d\n" % df['Eleanor'][1])
+
+               # 新增 Janet 欄位
+               df['Janet'] = df['Tahani'] + df['Jason']
+               print(df)
+            </code></pre>
+           </div>
+       </div>
+
+       <h3>複製 DataFrame</h3>
+       <p>當複製 DataFrame 時，要注意以下兩種方式的差異：</p>
+          <ul>
+               <li><b>引用 (reference)</b>: 將 DataFrame 指派給新變數時，兩個變數會指向同一個 DataFrame。修改其中一個變數，另一個變數也會受到影響。</li>
+               <li><b>複製 (copy)</b>: 使用 <code>.copy()</code> 方法可以建立一個 DataFrame 的完全獨立的副本，修改其中一個變數，另一個變數不會受到影響。</li>
+           </ul>
+           <div class="code-block">
+              <code>
+                # 建立 DataFrame 的引用
+                print("使用引用 (reference) 的範例:")
+                reference_to_df = df
+                print("   df 的 'Jason' 欄位索引 1 的起始值：", df['Jason'][1])
+                print("   reference_to_df 的 'Jason' 欄位索引 1 的起始值：", reference_to_df['Jason'][1], '\n')
+
+                # 修改 df
+                df.at[1, 'Jason'] = df['Jason'][1] + 5
+                print("   修改 df 後 'Jason' 欄位索引 1 的值：", df['Jason'][1])
+               print("   reference_to_df 的 'Jason' 欄位索引 1 的值也會被修改：", reference_to_df['Jason'][1], '\n')
+
+                # 建立 DataFrame 的副本
+                print("使用副本 (copy) 的範例:")
+                copy_of_my_dataframe = my_dataframe.copy()
+                print("  my_dataframe 的 'activity' 欄位索引 1 的起始值：", my_dataframe['activity'][1])
+                print("  copy_of_my_dataframe 的 'activity' 欄位索引 1 的起始值：", copy_of_my_dataframe['activity'][1], '\n')
+
+                # 修改 my_dataframe
+                my_dataframe.at[1, 'activity'] = my_dataframe['activity'][1] + 3
+                print("   修改 my_dataframe 後 'activity' 欄位索引 1 的值：", my_dataframe['activity'][1])
+               print("   copy_of_my_dataframe 的 'activity' 欄位索引 1 的值不會被修改：", copy_of_my_dataframe['activity'][1])
+             </code>
+           </div>
+    </div>
+
+    <script>
+        function toggleSolution(id) {
+           var solution = document.getElementById(id);
+            if (solution.style.display === "none") {
+                solution.style.display = "block";
+            } else {
+                solution.style.display = "none";
+            }
+       }
+   </script>
+</body>
+</html>
