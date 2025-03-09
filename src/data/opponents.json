@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "雷霆隊",
+    "attackValue": 78,
+    "defenseValue": 76
+  },
+  {
+    "id": 2,
+    "name": "湖人隊",
+    "attackValue": 86,
+    "defenseValue": 82
+  },
+  {
+    "id": 3,
+    "name": "勇士隊",
+    "attackValue": 92,
+    "defenseValue": 80
+  },
+  {
+    "id": 4,
+    "name": "公牛隊",
+    "attackValue": 80,
+    "defenseValue": 85
+  },
+  {
+    "id": 5,
+    "name": "火箭隊",
+    "attackValue": 84,
+    "defenseValue": 77
+  }
+]

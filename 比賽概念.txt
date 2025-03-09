@@ -1,0 +1,87 @@
+你是一個專業的程式設計助手，我需要你幫我開發一個基於Vercel vite-react模板（https://github.com/vercel/examples/tree/main/framework-boilerplates/vite-react）的籃球隊經營模擬遊戲的比賽部分。以下是具體需求，請生成相關程式碼和檔案結構，確保使用React組件、模組化且易於擴展。
+
+### 遊戲背景
+- 這是一個籃球隊經營模擬遊戲，比賽部分需控制在5分鐘內完成，玩家有操控感但不模擬完整比賽。
+- 使用vite-react模板作為基礎，保留其Vite和React特性。
+
+### 檔案結構要求
+basketball-sim/
+├── public/              # 靜態資源
+│   ├── favicon.ico
+│   └── vite.svg
+├── src/                 # 源碼
+│   ├── assets/          # 靜態資源
+│   │   └── basketball.png  # 示例圖片
+│   ├── components/      # React組件
+│   │   ├── game/        # 比賽相關組件
+│   │   │   ├── Game.jsx       # 比賽主組件
+│   │   │   ├── GameRound.jsx  # 單回合組件
+│   │   │   └── TimerBar.jsx   # 計時條組件
+│   │   └── management/  # 經營相關組件（預留）
+│   │       └── Management.jsx # 經營主組件（待實現）
+│   ├── data/            # 數據文件
+│   │   ├── players.json      # 球員數據
+│   │   ├── skills.json       # 技能數據
+│   │   ├── opponents.json    # 對手數據
+│   │   └── team.json         # 球隊數據（經營用）
+│   ├── utils/           # 工具函數
+│   │   └── dataLoader.js     # 數據加載函數
+│   ├── App.jsx          # 主應用入口
+│   ├── main.jsx         # 入口文件
+│   └── index.css        # 全局樣式
+├── .gitignore
+├── index.html
+├── package.json         # 包含react、react-dom等依賴
+├── README.md            # 更新運行說明
+└── vite.config.js       # Vite配置
+
+
+### 比賽設計需求
+1. **比賽結構**：
+   - **開始畫面**（30秒）：顯示前三節自動模擬結果，例如「前三節結束，你落後2分，比分48-50」。
+   - **第四節**（3分鐘）：3個回合，每回合約1分鐘：
+     - 回合1：進攻，選擇球員和技能，操作投籃。
+     - 回合2：防守，選擇策略和技能，操作防守。
+     - 回合3：自由選擇進攻或防守。
+   - **關鍵時刻**（1分鐘）：最後10秒，控制決定性行動（投籃或防守）。
+   - **結束畫面**（30秒）：顯示最終比分和統計。
+
+2. **核心機制**：
+   - **簡易模擬**：
+     - 前三節得分：(球隊攻擊值 - 對手防守值) × 隨機係數(0.8-1.2)。
+     - 球隊數據從players.json平均計算，對手數據從opponents.json讀取。
+   - **球員技能觸發**：
+     - 從players.json和skills.json加載數據。
+     - 技能效果：加命中率（+20%）、加防守成功率（+30%）、直接加分（+10）。
+     - 每技能限用一次。
+   - **操作**：
+     - 投籃：TimerBar.jsx顯示計時條（5秒），點擊綠色區間（中間50%）加命中率20%。
+     - 防守：TimerBar.jsx顯示干擾按鈕，點擊時機影響失誤率（10%-30%）。
+
+3. **數據文件**：
+   - **players.json**：id、姓名、攻擊值、防守值、技能id。
+   - **skills.json**：id、名稱、效果類型（increase_hit_rate/increase_defense_rate/add_score）、效果值。
+   - **opponents.json**：對手攻擊值、防守值。
+   - **team.json**：預留經營數據（例如資金、隊名）。
+
+4. **UI要求**：
+   - 使用React組件實現，樣式寫在index.css和內聯。
+   - Game.jsx渲染比賽流程，GameRound.jsx處理回合，TimerBar.jsx實現計時條。
+   - 顯示比分、回合數、技能狀態、球員下拉菜單。
+
+5. **技術要求**：
+   - 使用React (jsx)、Vite構建。
+   - 在utils/dataLoader.js中實現數據加載（fetch API）。
+   - 程式碼要有註釋，支持後續擴展。
+
+### 輸出要求
+- 提供完整檔案結構和內容：
+  - /src/components/game/Game.jsx、GameRound.jsx、TimerBar.jsx
+  - /src/utils/dataLoader.js
+  - /src/data/下的4個JSON文件（提供範例數據）
+  - /src/App.jsx、main.jsx、index.css
+  - index.html、vite.config.js、package.json（依賴react等）
+  - README.md（說明如何運行，例如`npm install && npm run dev`）
+- 程式碼運行後可體驗完整比賽，時長不超5分鐘。
+
+請根據以上需求生成程式碼，並附上簡要說明。

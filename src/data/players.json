@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "李明",
+    "attackValue": 85,
+    "defenseValue": 70,
+    "skillId": 1
+  },
+  {
+    "id": 2,
+    "name": "王強",
+    "attackValue": 78,
+    "defenseValue": 82,
+    "skillId": 2
+  },
+  {
+    "id": 3,
+    "name": "張偉",
+    "attackValue": 90,
+    "defenseValue": 65,
+    "skillId": 3
+  },
+  {
+    "id": 4,
+    "name": "陳剛",
+    "attackValue": 75,
+    "defenseValue": 88,
+    "skillId": 4
+  },
+  {
+    "id": 5,
+    "name": "林勇",
+    "attackValue": 82,
+    "defenseValue": 77,
+    "skillId": 5
+  }
+]

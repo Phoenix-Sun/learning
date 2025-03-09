@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "三分神射",
+    "effectType": "increase_hit_rate",
+    "effectValue": 20
+  },
+  {
+    "id": 2,
+    "name": "鐵壁防守",
+    "effectType": "increase_defense_rate",
+    "effectValue": 30
+  },
+  {
+    "id": 3,
+    "name": "灌籃高手",
+    "effectType": "add_score",
+    "effectValue": 10
+  },
+  {
+    "id": 4,
+    "name": "盜球高手",
+    "effectType": "increase_defense_rate",
+    "effectValue": 25
+  },
+  {
+    "id": 5,
+    "name": "急速突破",
+    "effectType": "increase_hit_rate",
+    "effectValue": 15
+  }
+]
